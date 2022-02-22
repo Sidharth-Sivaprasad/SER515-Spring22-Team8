@@ -469,7 +469,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4467394074270472}
   - component: {fileID: 205000138149085088}
-  - component: {fileID: 4118225967265594864}
   m_Layer: 0
   m_Name: wheelA
   m_TagString: Untagged
@@ -524,25 +523,6 @@ LODGroup:
     - renderer: {fileID: 23962912834254252}
     - renderer: {fileID: 23383429085170886}
   m_Enabled: 1
---- !u!95 &4118225967265594864
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616099646245404}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 31aeb3b6eeccfde44a95439c86039347, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1859638825894760
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,28 +4,60 @@ using UnityEngine;
 
 public class Wheel_Movement : MonoBehaviour
 {
-    [SerializeField] WheelCollider frontRight;
-    [SerializeField] WheelCollider frontLeft;
+	public void GetInput()
+	{
+		m_horizontalInput = Input.GetAxis("Horizontal");
+		m_verticalInput = Input.GetAxis("Vertical");
+	}
 
-    public float acceleration = 500f;
-    public float breakingForce = 300f;
+	private void Steer()
+	{
+		m_steeringAngle = maxSteerAngle * m_horizontalInput;
+		frontDriverW.steerAngle = m_steeringAngle;
+		frontPassengerW.steerAngle = m_steeringAngle;
+	}
 
-    private float currentAcceleration = 0f;
-    private float currentBreakForce = 0f;
+	private void Accelerate()
+	{
+		frontDriverW.motorTorque = m_verticalInput * motorForce;
+		frontPassengerW.motorTorque = m_verticalInput * motorForce;
+	}
 
-    private void FixedUpdate()
-    {
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
+	private void UpdateWheelPoses()
+	{
+		UpdateWheelPose(frontDriverW, frontDriverT);
+		UpdateWheelPose(frontPassengerW, frontPassengerT);
+		UpdateWheelPose(rearDriverW, rearDriverT);
+		UpdateWheelPose(rearPassengerW, rearPassengerT);
+	}
 
-        if (Input.GetKey(KeyCode.Space))
-            currentBreakForce = breakingForce;
-        else
-            currentBreakForce = 0f;
+	private void UpdateWheelPose(WheelCollider _collider, Transform _transform)
+	{
+		Vector3 _pos = _transform.position;
+		Quaternion _quat = _transform.rotation;
 
-        frontRight.motorTorque = currentAcceleration;
-        frontLeft.motorTorque = currentAcceleration;
+		_collider.GetWorldPose(out _pos, out _quat);
 
-        frontRight.brakeTorque = currentBreakForce;
-        frontRight.brakeTorque = currentBreakForce;
-    }
+		_transform.position = _pos;
+		_transform.rotation = _quat;
+	}
+
+	private void FixedUpdate()
+	{
+		GetInput();
+		Steer();
+		Accelerate();
+		UpdateWheelPoses();
+	}
+
+	private float m_horizontalInput;
+	private float m_verticalInput;
+	private float m_steeringAngle;
+
+	public WheelCollider frontDriverW, frontPassengerW;
+	public WheelCollider rearDriverW, rearPassengerW;
+	public Transform frontDriverT, frontPassengerT;
+	public Transform rearDriverT, rearPassengerT;
+	public float maxSteerAngle = 30;
+	public float motorForce = 500;
 }

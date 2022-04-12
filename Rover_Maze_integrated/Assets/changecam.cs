@@ -8,6 +8,7 @@ public class changecam : MonoBehaviour
     public GameObject cam2;
     public GameObject cam3;
     public GameObject cam4;
+    public GameObject cam5;
 
     // Update is called once per frame
     void Update()
@@ -18,6 +19,7 @@ public class changecam : MonoBehaviour
             cam2.SetActive(false);
             cam3.SetActive(false);
             cam4.SetActive(false);
+            cam5.SetActive(false);
         }
        if(Input.GetButtonDown("2Key"))
         {
@@ -25,6 +27,7 @@ public class changecam : MonoBehaviour
             cam2.SetActive(true);
             cam3.SetActive(false);
             cam4.SetActive(false);
+            cam5.SetActive(false);
 
         }
         if (Input.GetButtonDown("3Key"))
@@ -33,6 +36,7 @@ public class changecam : MonoBehaviour
             cam2.SetActive(false);
             cam3.SetActive(true);
             cam4.SetActive(false);
+            cam5.SetActive(false);
 
         }
         if (Input.GetButtonDown("4Key"))
@@ -41,6 +45,16 @@ public class changecam : MonoBehaviour
             cam2.SetActive(false);
             cam3.SetActive(false);
             cam4.SetActive(true);
+            cam5.SetActive(false);
+
+        }
+        if (Input.GetButtonDown("5Key"))
+        {
+            cam1.SetActive(false);
+            cam2.SetActive(false);
+            cam3.SetActive(false);
+            cam4.SetActive(false);
+            cam5.SetActive(true);
 
         }
     }
